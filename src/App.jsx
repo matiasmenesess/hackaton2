@@ -6,6 +6,7 @@ import ProductList from './components/ProductList';
 import Navbar from './components/Navbar';
 import Client from './components/Client';
 import Admin from './components/Admin';
+import SearchPage from './pages/ProductPage'
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/client" element={<Client />} />
+        <Route path="/search" element={<SearchPage />} />
+
       </Routes>
     </Router>
   );
