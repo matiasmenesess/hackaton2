@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { login } from '../services/auth';
+import { login } from '../services/api';
+import {useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login(username, password);
+      localStorage.setItem('token', response.data.token);
+      
     } catch (error) {
-      // Manejar error
+        console.error(error);
     }
   };
 

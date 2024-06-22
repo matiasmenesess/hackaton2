@@ -40,3 +40,50 @@
 .read-the-docs {
   color: #888;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.navbar a:hover {
+  background-color: #575757;
+}
+
+.navbar button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background-color: #d32f2f;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+}
