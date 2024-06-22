@@ -8,7 +8,8 @@ const Product = ({ item }) => {
       <h2>{item.title}</h2>
       <p>{item.price}</p>
       <p>{item.stars} stars</p>
-      <Link to={`/product/${item.ansi}`}>View Details</Link>
+      <p>{item.asin}</p>
+
     </div>
   );
 };

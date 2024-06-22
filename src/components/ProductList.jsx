@@ -44,8 +44,8 @@ const ProductList = () => {
       <h1>Product List</h1>
       <div className="product-list">
         {items.map((item) => (
-          <Product key={item.ansi} item={item} />
-        ))}
+        <Product key={item.asin} item={item} />
+    ))}
       </div>
       {loading && <p>Loading...</p>}
       {!hasMore && <p>No more products to load</p>}

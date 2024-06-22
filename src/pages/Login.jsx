@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { login,getRoleBasedOnToken } from '../services/api';
-import {useNavigate } from 'react-router-dom'
+import { login, getRoleBasedOnToken } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -13,14 +12,15 @@ const Login = () => {
     try {
       const response = await login(username, password);
       localStorage.setItem('token', response.data.token);
-      const role=getRoleBasedOnToken();
-      if(role==='admin'){
-        navigate('/admin')
-      }else{
-        navigate('/client')
+      localStorage.setItem('userId', response.data.userId); // Guarda el userId en el localStorage
+      const role = getRoleBasedOnToken();
+      if (role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/client');
       }
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
   };
 

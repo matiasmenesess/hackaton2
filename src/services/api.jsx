@@ -32,7 +32,22 @@ export const createItem = (item) => {
   };
   
   export const buyCart = (userId) => {
-    return axios.post(`${API_URL}/buy`, { userId }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+    return axios.put(`${API_URL}/buy`, { userId }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+  };
+
+  export const addToCart = (data) => {
+    return axios.post(`${API_URL}/cart`, data, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+  };
+  
+  export const removeFromCart = (data) => {
+    return axios.delete(`${API_URL}/cart`, {
+      data,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
+  };
+  
+  export const getCart = (userId) => {
+    return axios.get(`${API_URL}/cart/${userId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
   };
 
   export const getRoleBasedOnToken = () => {
