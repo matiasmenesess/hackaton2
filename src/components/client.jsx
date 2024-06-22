@@ -3,19 +3,14 @@ import { addToCart, removeFromCart, buyCart, getCart } from '../services/api';
 
 const Client = () => {
   const [cart, setCart] = useState([]);
-  const userId = localStorage.getItem('userId');
+  const [userId, setUserId] = useState('');
   const [itemId, setItemId] = useState('');
 
-  useEffect(() => {
-    const loadCart = async () => {
-      if (userId) {
-        const response = await getCart(userId);
-        setCart(response.data);
-      }
-    };
-
-    loadCart();
-  }, [userId,cart]);
+  const handleLoadCart = async (e) => {
+    e.preventDefault();
+    const response = await getCart(userId);
+    setCart(response.data);
+  };
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
@@ -24,13 +19,15 @@ const Client = () => {
     setCart(response.data);
   };
 
-  const handleRemoveFromCart = async (itemId) => {
+  const handleRemoveFromCart = async (e) => {
+    e.preventDefault();
     await removeFromCart({ itemId, userId });
     const response = await getCart(userId);
     setCart(response.data);
   };
 
-  const handleBuyCart = async () => {
+  const handleBuyCart = async (e) => {
+    e.preventDefault();
     await buyCart(userId);
     setCart([]);
   };
@@ -38,6 +35,18 @@ const Client = () => {
   return (
     <div className="client-container">
       <h1>Client Panel</h1>
+
+      <form className="client-form" onSubmit={handleLoadCart}>
+        <h2>Load Cart</h2>
+        <input 
+          name="userId" 
+          value={userId} 
+          onChange={(e) => setUserId(e.target.value)} 
+          placeholder="User ID" 
+          required 
+        />
+        <button type="submit">Load Cart</button>
+      </form>
 
       <form className="client-form" onSubmit={handleAddToCart}>
         <h2>Add Item to Cart</h2>
@@ -48,7 +57,45 @@ const Client = () => {
           placeholder="Item ID" 
           required 
         />
+        <input 
+          name="userId" 
+          value={userId} 
+          onChange={(e) => setUserId(e.target.value)} 
+          placeholder="User ID" 
+          required 
+        />
         <button type="submit">Add to Cart</button>
+      </form>
+
+      <form className="client-form" onSubmit={handleRemoveFromCart}>
+        <h2>Remove Item from Cart</h2>
+        <input 
+          name="itemId" 
+          value={itemId} 
+          onChange={(e) => setItemId(e.target.value)} 
+          placeholder="Item ID" 
+          required 
+        />
+        <input 
+          name="userId" 
+          value={userId} 
+          onChange={(e) => setUserId(e.target.value)} 
+          placeholder="User ID" 
+          required 
+        />
+        <button type="submit">Remove from Cart</button>
+      </form>
+
+      <form className="client-form" onSubmit={handleBuyCart}>
+        <h2>Buy Cart</h2>
+        <input 
+          name="userId" 
+          value={userId} 
+          onChange={(e) => setUserId(e.target.value)} 
+          placeholder="User ID" 
+          required 
+        />
+        <button type="submit">Buy Cart</button>
       </form>
 
       <h2>Cart Items</h2>
@@ -60,8 +107,6 @@ const Client = () => {
           </li>
         ))}
       </ul>
-
-      <button className="buy-button" onClick={handleBuyCart}>Buy Cart</button>
     </div>
   );
 };

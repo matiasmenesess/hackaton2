@@ -32,11 +32,11 @@ export const createItem = (item) => {
   };
   
   export const buyCart = (userId) => {
-    return axios.put(`${API_URL}/buy`, { userId }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+    return axios.post(`${API_URL}/buy`, { userId }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
   };
 
-  export const addToCart = (data) => {
-    return axios.post(`${API_URL}/cart`, data, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+  export const addToCart = (itemId, userId) => {
+    return axios.put(`${API_URL}/cart`, {itemId, userId});
   };
   
   export const removeFromCart = (data) => {

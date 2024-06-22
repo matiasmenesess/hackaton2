@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { login, getRoleBasedOnToken } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode }from 'jwt-decode';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +14,8 @@ const Login = () => {
     try {
       const response = await login(username, password);
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('userId', response.data.userId); // Guarda el userId en el localStorage
+      const decodedToken = jwtDecode(response.data.token);      
+      localStorage.setItem('userId', decodedToken.userId); // Guarda el userId en el localStorage
       const role = getRoleBasedOnToken();
       if (role === 'admin') {
         navigate('/admin');
