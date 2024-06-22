@@ -32,6 +32,7 @@ const Client = () => {
     setCart([]);
   };
 
+  
   return (
     <div className="client-container">
       <h1>Client Panel</h1>

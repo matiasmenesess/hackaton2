@@ -10,6 +10,7 @@ const Admin = () => {
     price: '',
     stars: '',
     title: '',
+    
   });
   const [editFormData, setEditFormData] = useState({
     itemId: '',

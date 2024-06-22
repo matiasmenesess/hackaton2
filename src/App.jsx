@@ -4,8 +4,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ProductList from './components/ProductList';
 import Navbar from './components/Navbar';
-import Client from './components/Client';
-import Admin from './components/Admin';
+import Client from './components/client';
+import Admin from './components/admin';
 import SearchPage from './pages/ProductPage'
 
 function App() {
