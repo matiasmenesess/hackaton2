@@ -23,7 +23,7 @@ const ProductList = () => {
 
   useEffect(() => {
     loadItems();
-  }, []); // Ejecuta solo una vez cuando el componente se monta
+  }, []); 
 
   useEffect(() => {
     const handleScroll = () => {
