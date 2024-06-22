@@ -4,6 +4,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ProductList from './components/ProductList';
 import Navbar from './components/Navbar';
+import Admin from './components/Admin';
+import client from './components/client';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<ProductList />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/client" element={<client />} />
       </Routes>
     </Router>
   );
